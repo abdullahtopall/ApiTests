@@ -1,8 +1,9 @@
+package Tests;
+
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.json.JSONObject;
-import org.junit.Assert;
 import org.junit.Test;
 import org.testng.asserts.SoftAssert;
 
