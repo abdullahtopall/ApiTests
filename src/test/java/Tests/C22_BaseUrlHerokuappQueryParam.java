@@ -21,7 +21,6 @@ public class C22_BaseUrlHerokuappQueryParam extends BaseUrlHerokuapp {
         Response response = given().contentType(ContentType.JSON)
                 .when().spec(specHerokuapp)
                 .get("/{pp1}");
-        response.prettyPrint();
 
         // 4-assertions
         response
