@@ -6,7 +6,7 @@ public class TestDataDummyExample {
     public static int basariliSorguStatusCode=200;
     public static String contentType ="application/json";
 
-    public static JSONObject jsonBodyOlustur(int id, String employee_name, int employee_salary, int employee_age, String profile_image) {
+    public static JSONObject jsonBodyOlustur(int id, String employee_name, String employee_salary, String employee_age, String profile_image) {
         JSONObject responseBody = new JSONObject();
         JSONObject dataBody = new JSONObject();
 
