@@ -2,6 +2,9 @@ package TestDatalari;
 
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class TestDataDummyExample {
     public static int basariliSorguStatusCode=200;
     public static String contentType ="application/json";
@@ -21,6 +24,23 @@ public class TestDataDummyExample {
         responseBody.put("message","Successfully! Record has been fetched.");
 
         return responseBody;
+    }
+
+    public static Map<String,Object> mapBodyOlustur() {
+        Map<String,Object> bodyMap = new HashMap<>();
+        Map<String,Object> dataMap = new HashMap<>();
+
+        dataMap.put("id",3);
+        dataMap.put("employee_name","Ashton Cox");
+        dataMap.put("employee_salary","86000");
+        dataMap.put("employee_age","66");
+        dataMap.put("profile_image","");
+
+        bodyMap.put("status","success");
+        bodyMap.put("data",dataMap);
+        bodyMap.put("message","Successfully! Record has been fetched.");
+
+        return bodyMap;
     }
 
 }
