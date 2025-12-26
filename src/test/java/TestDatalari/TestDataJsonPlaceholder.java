@@ -8,7 +8,7 @@ import java.util.Map;
 public class TestDataJsonPlaceholder {
 
     public static int basariliSorguStatusCode = 200;
-    public static String contentType="application/json; charset-utf-8";
+    public static String contentType="application/json; charset=utf-8";
     public static String headerConnection = "keep-alive";
 
     public static JSONObject responseBodyOlustur22() {
