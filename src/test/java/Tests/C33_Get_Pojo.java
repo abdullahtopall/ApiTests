@@ -1,10 +1,11 @@
 package Tests;
 
 import baseUrl.BaseUrlDummyExample;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.Assert;
 import org.junit.Test;
-import pojos.Dummy.PojoDummyDataResponse;
+import pojos.Dummy.PojoDummyExampleData;
 import pojos.Dummy.PojoDummyResponseBody;
 
 import static io.restassured.RestAssured.given;
@@ -13,31 +14,31 @@ public class C33_Get_Pojo extends BaseUrlDummyExample {
 
     @Test
     public void test01() {
+
         // 1-endpoint ve request body
-        specDummyExample.pathParams("pp1","employee","pp2", "3");
+        specDummyExample.pathParams("pp1","employee","pp2",3);
 
         // 2-expected data
-        PojoDummyDataResponse expectedDataBilgileri = new PojoDummyDataResponse(3,"Ashton Cox",
-                "86000","66","");
+        PojoDummyExampleData dataPojo = new PojoDummyExampleData
+                (3,"Ashton Cox","86000","66","");
 
-        PojoDummyResponseBody expectedDataPojo = new PojoDummyResponseBody("success",
-                "Successfully! Record has been fetched.",expectedDataBilgileri);
+        PojoDummyResponseBody expectedDataPojo = new PojoDummyResponseBody
+                ("success",dataPojo,"Successfully! Record has been fetched.");
 
-        // 3-request ve response
+        // 3-request response
         Response response = given().spec(specDummyExample)
                 .when()
                 .get("/{pp1}/{pp2}");
-        PojoDummyResponseBody responsePojo = response.as(PojoDummyResponseBody.class);
-        System.out.println(responsePojo);
 
-        // 4-assert
-        Assert.assertEquals(expectedDataPojo.getStatus(),responsePojo.getStatus());
-        Assert.assertEquals(expectedDataPojo.getData().getId(),responsePojo.getData().getId());
-        Assert.assertEquals(expectedDataPojo.getData().getEmployee_name(),responsePojo.getData().getEmployee_name());
-        Assert.assertEquals(expectedDataPojo.getData().getEmployee_salary(),responsePojo.getData().getEmployee_salary());
-        Assert.assertEquals(expectedDataPojo.getData().getEmployee_age(),responsePojo.getData().getEmployee_age());
-        Assert.assertEquals(expectedDataPojo.getData().getProfile_image(),responsePojo.getData().getProfile_image());
-        Assert.assertEquals(expectedDataPojo.getMessage(),responsePojo.getMessage());
+        JsonPath responseJsonPath = response.jsonPath();
 
+        // 4-assertion
+        Assert.assertEquals(expectedDataPojo.getStatus(),responseJsonPath.get("status"));
+        Assert.assertEquals(expectedDataPojo.getData().getId(),responseJsonPath.get("data.id"));
+        Assert.assertEquals(expectedDataPojo.getData().getEmployeeName(),responseJsonPath.get("data.employee_name"));
+        Assert.assertEquals(expectedDataPojo.getData().getEmployeeSalary(),responseJsonPath.get("data.employee_salary"));
+        Assert.assertEquals(expectedDataPojo.getData().getEmployeeAge(),responseJsonPath.get("data.employee_age"));
+        Assert.assertEquals(expectedDataPojo.getData().getProfileImage(),responseJsonPath.getString("data.profile_image"));
+        Assert.assertEquals(expectedDataPojo.getMessage(),responseJsonPath.get("message"));
     }
 }
