@@ -9,6 +9,7 @@ import pojos.Dummy.PojoDummyExampleData;
 import pojos.Dummy.PojoDummyResponseBody;
 
 import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertEquals;
 
 public class C33_Get_Pojo extends BaseUrlDummyExample {
 
@@ -33,12 +34,12 @@ public class C33_Get_Pojo extends BaseUrlDummyExample {
         JsonPath responseJsonPath = response.jsonPath();
 
         // 4-assertion
-        Assert.assertEquals(expectedDataPojo.getStatus(),responseJsonPath.get("status"));
-        Assert.assertEquals(expectedDataPojo.getData().getId(),responseJsonPath.get("data.id"));
-        Assert.assertEquals(expectedDataPojo.getData().getEmployeeName(),responseJsonPath.get("data.employee_name"));
-        Assert.assertEquals(expectedDataPojo.getData().getEmployeeSalary(),responseJsonPath.get("data.employee_salary"));
-        Assert.assertEquals(expectedDataPojo.getData().getEmployeeAge(),responseJsonPath.get("data.employee_age"));
-        Assert.assertEquals(expectedDataPojo.getData().getProfileImage(),responseJsonPath.getString("data.profile_image"));
-        Assert.assertEquals(expectedDataPojo.getMessage(),responseJsonPath.get("message"));
+        assertEquals(expectedDataPojo.getStatus(),responseJsonPath.get("status"));
+        assertEquals(expectedDataPojo.getData().getId(),responseJsonPath.get("data.id"));
+        assertEquals(expectedDataPojo.getData().getEmployeeName(),responseJsonPath.get("data.employee_name"));
+        assertEquals(expectedDataPojo.getData().getEmployeeSalary(),responseJsonPath.get("data.employee_salary"));
+        assertEquals(expectedDataPojo.getData().getEmployeeAge(),responseJsonPath.get("data.employee_age"));
+        assertEquals(expectedDataPojo.getData().getProfileImage(),responseJsonPath.getString("data.profile_image"));
+        assertEquals(expectedDataPojo.getMessage(),responseJsonPath.get("message"));
     }
 }
